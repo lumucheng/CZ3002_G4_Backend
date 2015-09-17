@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 public class QuestionDAO {
 
@@ -42,7 +42,7 @@ public class QuestionDAO {
 
                 if (imageBlob != null) {
                     byte[] imageByte = imageBlob.getBytes(1, (int) imageBlob.length());
-                    String image = Base64.getEncoder().encodeToString(imageByte);
+                    String image = Base64.encodeBase64String(imageByte);
                     question.setImage(image);
                 }
                 datasetList.add(question);
