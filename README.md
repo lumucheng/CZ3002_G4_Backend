@@ -13,4 +13,5 @@ http://52.76.1.45:8080/cz3002/rest/api/getHighscore
 
 Insert highscore:
 http://52.76.1.45:8080/cz3002/rest/api/insertHighscore/name=XXX&score=YYY&is_social=ZZZ
+
 name: String, score: int, is_social: Boolean (true/false)
