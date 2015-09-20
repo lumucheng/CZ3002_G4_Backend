@@ -6,7 +6,6 @@
 package com.ntu.cz3002.dao;
 
 import com.ntu.cz3002.entity.Question;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import org.apache.commons.codec.binary.Base64;
 
 public class QuestionDAO {
 
@@ -37,14 +35,15 @@ public class QuestionDAO {
                 question.setId(resultSet.getInt("id"));
                 question.setAnswer(resultSet.getString("answer"));
                 question.setTag(resultSet.getString("tag"));
+                question.setImage_path(resultSet.getString("image_path"));
+                question.setImage_name(resultSet.getString("image_name"));
 
-                Blob imageBlob = resultSet.getBlob("image");
-
-                if (imageBlob != null) {
-                    byte[] imageByte = imageBlob.getBytes(1, (int) imageBlob.length());
-                    String image = Base64.encodeBase64String(imageByte);
-                    question.setImage(image);
-                }
+//                Blob imageBlob = resultSet.getBlob("image");
+//                if (imageBlob != null) {
+//                    byte[] imageByte = imageBlob.getBytes(1, (int) imageBlob.length());
+//                    String image = Base64.encodeBase64String(imageByte);
+//                    question.setImage(image);
+//                }
                 datasetList.add(question);
             }
 
@@ -92,13 +91,15 @@ public class QuestionDAO {
             Class.forName(DaoUtil.JDBC_DRIVER);
             conn = DriverManager.getConnection(DaoUtil.DB_URL);
 
-            String sql = "INSERT INTO TBL_DATASET (image, answer, tag)"
-                    + " VALUES (?, ?, ?);";
+            String sql = "INSERT INTO TBL_DATASET (image_path, image_name, answer, tag)"
+                    + " VALUES (?, ?, ?, ?);";
 
             pStmt = conn.prepareStatement(sql);
-            pStmt.setBlob(1, question.getInputStream());
-            pStmt.setString(2, question.getAnswer());
-            pStmt.setString(3, question.getTag());
+            //pStmt.setBlob(1, question.getInputStream());
+            pStmt.setString(1, question.getImage_path());
+            pStmt.setString(2, question.getImage_name());
+            pStmt.setString(3, question.getAnswer());
+            pStmt.setString(4, question.getTag());
 
             int rowsAffected = pStmt.executeUpdate();
 

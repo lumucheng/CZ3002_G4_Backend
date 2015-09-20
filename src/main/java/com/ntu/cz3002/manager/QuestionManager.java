@@ -16,19 +16,22 @@ import java.util.ArrayList;
 public class QuestionManager {
     
     private QuestionDAO questionDAO;
-    private final static int numQuestions = 10;
+    private final static String IMG_PATH = "http://52.76.1.45:8080/cz3002/image/";
     
     public QuestionManager() {
         questionDAO = new QuestionDAO();
     }
     
-    public ArrayList<Question> getRandomQuestions() {
+    public ArrayList<Question> getRandomQuestions(int count) {
         
-        ArrayList<Question> questionList = questionDAO.getRandomQuestions(numQuestions);
+        ArrayList<Question> questionList = questionDAO.getRandomQuestions(count);
         
         for (Question question : questionList) {
-            ArrayList<String> wrongAnswers = 
-                    questionDAO.getRandomWrongAnswers(question.getId(), question.getTag());
+            
+            question.setImage_url(IMG_PATH + question.getImage_name());
+            
+            ArrayList<String> wrongAnswers = questionDAO.getRandomWrongAnswers(
+                    question.getId(), question.getTag());
             question.setWrong_answers(wrongAnswers);
         }
         

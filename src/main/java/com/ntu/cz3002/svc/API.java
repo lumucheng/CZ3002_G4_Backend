@@ -25,16 +25,16 @@ public class API {
     HighscoreManager highscoreMgr = new HighscoreManager();
     
     @GET
-    @Path("/getDataset/")
+    @Path("/getDataset/count={count}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Question> getDataSet() {
-        return questionMgr.getRandomQuestions();
+    public ArrayList<Question> getDataset(@PathParam("count")int count) {
+        return questionMgr.getRandomQuestions(count);
     }
     
     @GET
     @Path("/getHighscore/")
     @Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Highscore> getHighscore() {
+    public ArrayList<ArrayList<Highscore>> getHighscore() {
         return highscoreMgr.getHighScores();
     }
     

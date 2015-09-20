@@ -16,20 +16,27 @@ import java.util.ArrayList;
 public class HighscoreManager {
     
     private HighscoreDAO highscoreDAO = null;
-    private final static int numHighscore = 10;
-    private final static Boolean socialHighscore = true;
-    private final static Boolean datasetHighscore = false;
+    private final static int NUM_HIGHSCORE = 10;
+    private final static Boolean SOCIAL_HIGHSCORE = true;
+    private final static Boolean DATASET_HIGHSCORE = false;
     
     public HighscoreManager() {
         highscoreDAO = new HighscoreDAO();
     }
     
-    public ArrayList<Highscore> getHighScores() {
+    public ArrayList<ArrayList<Highscore>> getHighScores() {
         
-        ArrayList<Highscore> highscoreList = new ArrayList<Highscore>();
+        ArrayList<ArrayList<Highscore>> highscoreList = 
+                new ArrayList<ArrayList<Highscore>>();
         
-        highscoreList.addAll(highscoreDAO.getHighscore(numHighscore, socialHighscore));
-        highscoreList.addAll(highscoreDAO.getHighscore(numHighscore, datasetHighscore));
+        ArrayList<Highscore> socialHighScoreList = 
+                highscoreDAO.getHighscore(NUM_HIGHSCORE, SOCIAL_HIGHSCORE);
+        
+        ArrayList<Highscore> datasetHighScoreList = 
+                highscoreDAO.getHighscore(NUM_HIGHSCORE, DATASET_HIGHSCORE);
+        
+        highscoreList.add(socialHighScoreList);
+        highscoreList.add(datasetHighScoreList);
         
         return highscoreList;
     }

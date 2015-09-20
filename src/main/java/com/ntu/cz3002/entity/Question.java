@@ -5,7 +5,6 @@
  */
 package com.ntu.cz3002.entity;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,15 +12,17 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "question")
-@XmlType(propOrder = {"id", "image", "answer", "tag", "wrong_answers" } )
+@XmlType(propOrder = {"id", "image_url", "image_name", "answer", 
+    "tag", "wrong_answers" } )
 public class Question {
     
     private int id;
-    private String image;
+    private String image_path;
+    private String image_url;
+    private String image_name;
     private String answer;
     private String tag;
     private ArrayList<String> wrong_answers;
-    private InputStream inputStream;
     
     public Question() {
         wrong_answers = new ArrayList<String>();
@@ -35,14 +36,32 @@ public class Question {
     public void setId(int id) {
         this.id = id;
     }
-
-    @XmlElement
-    public String getImage() {
-        return image;
+    
+    @XmlTransient
+    public String getImage_path() {
+        return image_path;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
+    }
+
+    @XmlElement
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image) {
+        this.image_url = image;
+    }
+    
+    @XmlElement
+    public String getImage_name() {
+        return image_name;
+    }
+
+    public void setImage_name(String image_name) {
+        this.image_name = image_name;
     }
 
     @XmlElement
@@ -70,14 +89,5 @@ public class Question {
 
     public void setWrong_answers(ArrayList<String> wrong_answers) {
         this.wrong_answers = wrong_answers;
-    }
-
-    @XmlTransient
-    public InputStream getInputStream() {
-        return inputStream;
-    }
-
-    public void setInputStream(InputStream inputStream) {
-        this.inputStream = inputStream;
     }
 }
