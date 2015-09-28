@@ -26,6 +26,7 @@
                             <option value="Animal">Animal</option>
                             <option value="Celebrities">Celebrities</option>
                             <option value="Brands">Brands</option>
+                            <option value="Sports">Sports</option>
                         </select></td>
                 </tr>
                 <tr>

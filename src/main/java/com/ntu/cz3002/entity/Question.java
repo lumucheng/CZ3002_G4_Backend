@@ -12,8 +12,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "question")
-@XmlType(propOrder = {"id", "image_url", "image_name", "answer", 
-    "tag", "wrong_answers" } )
+@XmlType(propOrder = {"id", "image_url", "answer", "tag", } )
 public class Question {
     
     private int id;
@@ -55,7 +54,7 @@ public class Question {
         this.image_url = image;
     }
     
-    @XmlElement
+    @XmlTransient
     public String getImage_name() {
         return image_name;
     }
@@ -82,7 +81,7 @@ public class Question {
         this.tag = tag;
     }   
 
-    @XmlElement
+    @XmlTransient
     public ArrayList<String> getWrong_answers() {
         return wrong_answers;
     }
