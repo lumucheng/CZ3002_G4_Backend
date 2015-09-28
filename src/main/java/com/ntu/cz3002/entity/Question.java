@@ -10,9 +10,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 @XmlRootElement(name = "question")
-@XmlType(propOrder = {"id", "image_url", "answer", "tag", } )
+@XmlType(propOrder = { "id", "image_url", "answer", "tag" } )
 public class Question {
     
     private int id;
@@ -37,6 +38,7 @@ public class Question {
     }
     
     @XmlTransient
+    @JsonIgnore
     public String getImage_path() {
         return image_path;
     }
@@ -55,6 +57,7 @@ public class Question {
     }
     
     @XmlTransient
+    @JsonIgnore
     public String getImage_name() {
         return image_name;
     }
@@ -82,6 +85,7 @@ public class Question {
     }   
 
     @XmlTransient
+    @JsonIgnore
     public ArrayList<String> getWrong_answers() {
         return wrong_answers;
     }
