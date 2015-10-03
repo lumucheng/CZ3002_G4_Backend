@@ -14,6 +14,7 @@
     <body>
     <center>
         <h3><%=request.getAttribute("Message")%></h3>
+        <a href="viewqns.jsp">View Dataset Questions</a>
     </center>
 </body>
 </html>
