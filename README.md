@@ -1,5 +1,8 @@
 # CZ3002_G4_Backend
 
+Update 6th Jan 2016: Links dead.. Host the application on any tomcat server.
+--------------------------------------------------------------------------
+
 Hosted on Amazon EC2
 
 Insert pre-defined question:
@@ -10,7 +13,6 @@ http://52.76.1.45:8080/cz3002/viewqns.jsp
 
 Get pre-defined dataset questions:
 http://52.76.1.45:8080/cz3002/rest/api/getDataset/count=XX
-
 
 Get highscore list:
 http://52.76.1.45:8080/cz3002/rest/api/getHighscore
